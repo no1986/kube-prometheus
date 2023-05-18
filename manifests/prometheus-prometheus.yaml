@@ -51,6 +51,12 @@ spec:
     runAsNonRoot: true
     runAsUser: 1000
   serviceAccountName: prometheus-k8s
-  serviceMonitorNamespaceSelector: {}
+  serviceMonitorNamespaceSelector:
+    matchExpressions:
+    - key: kubernetes.io/metadata.name
+      operator: In
+      values:
+      - monitoring
+      - istio-system
   serviceMonitorSelector: {}
   version: 2.44.0
